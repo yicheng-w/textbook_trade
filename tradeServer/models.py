@@ -14,7 +14,7 @@ class NoSuchItemException(Exception):
 
 class User(Document):
     u_id = StringField(required=True, primary_key=True)
-# inventory: {item_id : }
+    # inventory: {item_id : }
     sell_inventory = DictField()
     buy_inventory = DictField()
     name = StringField(required=True)
@@ -58,3 +58,9 @@ class User(Document):
             raise NotInCartException
         raise NotInCartException
 
+class Item(Document):
+    name = StringField(required=True, primary_key=True)
+    price = IntField(required=True) # price measured in cents
+    seller = StringField(required=True)
+    watcher = DictField()
+    quantity = IntField(required=True)
